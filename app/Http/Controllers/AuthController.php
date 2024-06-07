@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-       /*  $request->validate([
+        $request->validate([
             'identificacion' => 'required|string',
             'email' => 'required|email',
         ]);
@@ -56,6 +56,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Verificacion correcta.'], 200);
         } else {
             return response()->json(['message' => 'Codigo de verificacion invalido.'], 401);
-        } */
+        }
     }
 }

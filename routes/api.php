@@ -14,6 +14,7 @@ use App\Http\Controllers\IntegranteComiteController;
 use App\Http\Controllers\SolicitudComiteAAprendizController;
 use App\Http\Controllers\SolicitudComiteFaltaController;
 use App\Http\Controllers\UsuarioLoginController;
+use \resources\views\login;
 
 
 //Instructores
@@ -101,7 +102,9 @@ Route::put('/usuarios-login/{id}', [UsuarioLoginController::class, 'update']);
 Route::delete('/usuarios-login/{id}', [UsuarioLoginController::class, 'destroy']);
 
 //verificar codigo
+
 Route::post('/login', [AuthController::class, 'login']);
+
 Route::post('/verify-code', [AuthController::class, 'verifyCode']);
 
 
@@ -112,3 +115,7 @@ Route::options('{any}', function(Request $request) {
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT,  PATCH, DELETE, OPTIONS')
         ->header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type,  Accept, X-Token-Auth, Authorization');
 })->where('any', '.*');
+
+/* Route::get('/inicial', function () {
+    return view('inicial');
+})->name('inicial'); */

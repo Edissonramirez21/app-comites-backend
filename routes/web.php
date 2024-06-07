@@ -14,6 +14,7 @@ use App\Http\Controllers\IntegranteComiteController;
 use App\Http\Controllers\SolicitudComiteAAprendizController;
 use App\Http\Controllers\SolicitudComiteFaltaController;
 use App\Http\Controllers\UsuarioLoginController;
+use \resources\views\login;
 
 Route::resource('instructores', InstructorController::class,);
 Route::resource('aprendices', AprendizController::class);
@@ -41,3 +42,12 @@ Route::options('{any}', function(Request $request) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+/* Route::get('/inicial', function () {
+    return view('inicial');
+})->name('inicial'); */
+
+Route::post('/login', [AuthController::class, 'login']);
+

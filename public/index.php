@@ -15,3 +15,10 @@ require __DIR__.'/../vendor/autoload.php';
 // Bootstrap Laravel and handle the request...
 (require_once __DIR__.'/../bootstrap/app.php')
     ->handleRequest(Request::capture());
+
+
+    /**codigo 6 **/
+/* function claveThree($length = 6) { 
+    return substr(str_shuffle("0123456789"), 0, $length); 
+} 
+$miClaveThree  = claveThree(); */
