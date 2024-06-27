@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\SteamController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\InstructorController;
@@ -50,4 +51,7 @@ Route::get('/', function () {
 })->name('inicial'); */
 
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/auth/steam', [SteamController::class,'redirect']);
+Route::get('/auth/steam/callback', SteamController::class,'handleCallback');
 
