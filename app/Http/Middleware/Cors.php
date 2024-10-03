@@ -26,9 +26,9 @@ class Cors
         // Handling normal requests
            $response = $next($request);
 
-           $response ->header->set('Access-Control-Allow-Origin', '*');
-           $response ->header->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-           $response ->header->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Token-Auth, Authorization, Accept, charset,boundary,Content-Length');
+           $response ->headers->set('Access-Control-Allow-Origin', '*');
+           $response ->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+           $response ->headers->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Token-Auth, Authorization, Accept, charset,boundary,Content-Length');
 
             return $response;
         
