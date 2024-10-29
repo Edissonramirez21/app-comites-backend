@@ -2,22 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class UsuarioLogin extends Model
+class UsuarioLogin extends Model implements AuthenticatableContract
 {
-    use HasFactory;
-    protected $table = 'Usuario_Login';
-    public $timestamps = false;
+    use Authenticatable, Notifiable;
+
+    protected $table = 'usuario_login';
+    protected $primaryKey = 'id_usuario_login';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = true;
 
     protected $fillable = [
-        'idUsuario_Login',
-        'Nombre',
-        'Correo',
-        'Telefono',
-        'Rol',
-        'Identificacion',
-        'Codigo_Verificacion',
+        'name',
+        'email',
+        'telefono',
+        'rol',
+        'identificacion',
+        'codigo_validacion',
+        'codigo_expiracion',
     ];
 }

@@ -1,0 +1,57 @@
+/* Estilo del menú desplegable del usuario */
+.dropdown-menu {
+    background-color: #5eb319; /* Mismo color que el navbar */
+    color: #fff;
+    border: none;
+}
+
+.dropdown-menu .dropdown-item,
+.dropdown-menu .dropdown-item-text {
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: #4ca314; /* Un verde ligeramente más oscuro */
+}
+
+/* Ajustes del menú lateral (Offcanvas) */
+.offcanvas { /* Ajusta el ancho según tus preferencias */ /* Ajusta la altura máxima para que no sea tan largo */
+    background-color: #5eb319;
+    color: white; /* Añadir scroll si es necesario */
+}
+
+.offcanvas .offcanvas-header {
+    background-color: #4ca314; /* Color ligeramente más oscuro */
+    color: white;
+}
+
+.offcanvas .offcanvas-body {
+    background-color: #5eb319;
+    
+}
+
+/* Estilos para los enlaces del menú lateral */
+.offcanvas .nav-link {
+    color: white;
+   
+}
+.bg-custom-notification {
+    background-color: #007d79 !important;
+}
+.offcanvas .nav-link:hover {
+    background-color: #4ca314;
+}
+
+.offcanvas .nav-link.active {
+    background-color: #007d79;
+    color: white;
+}
+
+/* Ajustar el botón de cerrar en el Offcanvas */
+.offcanvas .btn-close {
+    filter: invert(1);
+}
+
+
+

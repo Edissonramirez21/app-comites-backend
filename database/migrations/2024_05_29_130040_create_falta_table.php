@@ -4,26 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateFaltaTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('falta', function (Blueprint $table) {
-            $table->integer('idReglamento')->primary();
-            $table->enum('Tipo_falta', ['Academina', 'Diciplinaria']);
-            $table->string('Falta', 45);
-            $table->enum('Gravedad', ['leve', 'grave', 'gravisima']);
+            $table->increments('id_reglamento');
+            $table->enum('tipo_falta', ['academica', 'disciplinaria']);
+            $table->string('falta', 100);
+            $table->enum('gravedad', ['leve', 'grave', 'gravisima']);
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('falta');
     }
-};
+}

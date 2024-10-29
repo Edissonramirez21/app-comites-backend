@@ -2,7 +2,8 @@
     "require": {
         "laravel/socialite": "^5.15",
         "laravel/framework": "^11.26",
-        "laravel/tinker": "^2.10"
+        "laravel/tinker": "^2.10",
+        "phpmailer/phpmailer": "^6.9"
     },
     "autoload": {
     "psr-4": {

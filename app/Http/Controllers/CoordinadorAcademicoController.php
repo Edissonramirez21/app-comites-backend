@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class CoordinadorAcademicoController extends Controller
 {
+    public function dashboard()
+    {
+        return view('coordinador.dashboard');
+    }
+
+    public function opcion1()
+    {
+        // Lógica para la opción 1
+        return view('coordinador.opcion1');
+    }
+    
      // Obtiene todos los coordinadores académicos
      public function index()
      {

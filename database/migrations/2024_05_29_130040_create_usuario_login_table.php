@@ -4,21 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUsuarioLoginTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('usuario_login', function (Blueprint $table) {
-            $table->integer('idUsuario_Login')->primary();
-            $table->string('Nombre', 45);
-            $table->string('Correo', 100)->unique();
-            $table->integer('Telefono');
-            $table->string('Rol', 45);
-            $table->string('Identificacion', 20)->unique();
-            $table->string('Codigo_Verificacion', 6)->nullable();
+            $table->increments('id_usuario_login');
+            $table->string('name', 60);
+            $table->string('email', 200)->unique();
+            $table->bigInteger('telefono')->unique();
+            $table->string('rol', 60)->nullable();
+            $table->bigInteger('identificacion')->unique();
+            $table->integer('codigo_validacion')->nullable();
             $table->timestamps();
         });
     }
@@ -26,8 +26,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('usuario_login');
     }
-};
+}

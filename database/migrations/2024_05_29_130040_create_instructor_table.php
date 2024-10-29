@@ -4,26 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateInstructorTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('instructor', function (Blueprint $table) {
-            $table->integer('idInstructor')->primary();
-            $table->string('Nombre', 45);
-            $table->string('Correo', 45);
-            $table->integer('Telefono');
+            $table->increments('id_instructor');
+            $table->string('name', 60);
+            $table->string('email', 200);
+            $table->bigInteger('telefono');
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('instructor');
     }
-};
+}

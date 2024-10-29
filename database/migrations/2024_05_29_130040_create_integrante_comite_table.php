@@ -4,27 +4,28 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateIntegranteComiteTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('integrante_comite', function (Blueprint $table) {
-            $table->integer('idUsuario')->primary();
-            $table->string('Nombre', 45);
-            $table->bigInteger('Telefono');
-            $table->string('Correo', 45);
-            $table->string('Rol', 45);
+            $table->increments('id_usuario');
+            $table->string('name', 60);
+            $table->bigInteger('telefono');
+            $table->string('email', 200);
+            $table->string('rol', 60);
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('integrante_comite');
     }
-};
+}

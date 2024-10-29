@@ -1,0 +1,9 @@
+p { 
+    font-size: 22px;
+    color: #333;
+    text-shadow: 1px 1px 4px  #aaaaaa;
+    margin-bottom: 10px; 
+}
+.custom-h3 {
+    margin-bottom: 30px; 
+}

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -13,8 +14,11 @@ use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Middleware\TrustProxies;
-use App\Http\Middleware\Cors; 
-use Ilumminate\Http\Middleware\HandleCors;
+use Illuminate\Http\Middleware\HandleCors;
+use App\Http\Middleware\Cors;
+use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\CheckCodigoVerificacion;
+use Illuminate\Auth\Middleware\Authenticate;
 
 
 class Kernel extends HttpKernel
@@ -27,60 +31,59 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        //  \App\Http\Middleware\TrustHost::class,
         // Otros middlewares
         \App\Http\Middleware\TrustProxies::class,
-        \App\Http\Middleware\PreventRequestDuringMaintenance::class,
-        \Ilumminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Ilumminate\Foundation\Http\Middleware\ConvertingEmptyStringsToNull::class,
+        \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrimStrings::class,
-        \Ilumminate\Http\Middleware\HandleCors::class,
-        \App\Http\Middleware\Cors::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
     ];
 
-   /**
-    * The application route middleware groups.
-    *
-    * @var array 
-    */
+    /**
+     * The application's route middleware groups.
+     *
+     * @var array
+     */
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
-            \Ilumminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Ilumminate\Session\Middleware\StartSession::class,
-            //\Ilumminate\Session\Middleware\AuthenticateSession::class,
-            \Ilumminate\View\Middleware\ShareErrorsFromSession::class,
-            \Ilumminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\Cors::class,
         ],
 
         'api' => [
             'throttle:api',
-            \Ilumminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\Cors::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
     ];
 
-     /**
-    * The application's route middleware.
-    *
-    *These middleware may be assigned to groups or used individually.
-    * @var array 
-    */
+    /**
+     * The application's route middleware.
+     *
+     * These middleware may be assigned to groups or used individually.
+     *
+     * @var array
+     */
     protected $routeMiddleware = [
-        //  \App\Http\Middleware\TrustHost::class,
-        // Otros middlewares
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Ilumminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'cache.headers' => \Ilumminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Ilumminate\Auth\Middleware\Authorize::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'cors' => \App\Http\Middleware\Cors::class, // Este es el middleware CORS que has definido.
+        'rol' => \App\Http\Middleware\CheckRole::class, // Middleware CheckRole
+        'check.codigo' => \App\Http\Middleware\CheckCodigoVerificacion::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Ilumminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Ilumminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Ilumminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Ilumminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'Cors' => \App\Http\Middleware\Cors::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }
+
+
+

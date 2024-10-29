@@ -107,6 +107,7 @@ class ComposerStaticInitd46e29951d28b3b0eb291f99006fa7d4
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'ParagonIE\\ConstantTime\\' => 23,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' => 
         array (
@@ -372,6 +373,10 @@ class ComposerStaticInitd46e29951d28b3b0eb291f99006fa7d4
         'ParagonIE\\ConstantTime\\' => 
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'NunoMaduro\\Collision\\' => 
         array (

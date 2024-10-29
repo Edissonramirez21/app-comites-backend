@@ -15,6 +15,8 @@ use App\Http\Controllers\SolicitudComiteAAprendizController;
 use App\Http\Controllers\SolicitudComiteFaltaController;
 use App\Http\Controllers\UsuarioLoginController;
 use \resources\views\login;
+use App\Http\Controllers\EmailController;
+
 
 
 //Instructores
@@ -107,6 +109,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/verify-code', [AuthController::class, 'verifyCode']);
 
+Route::post('/enviar-codigo', [EmailController::class, 'enviarCodigo']);
 
 //Cors
 Route::options('{any}', function(Request $request) {
