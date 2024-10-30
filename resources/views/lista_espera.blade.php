@@ -6,7 +6,7 @@
     <link type="text/css" rel="shortcut icon" href="https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-naranja-png-2022.png"/>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/cargando.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/inicial.css') }}">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="container mt-7">
     <div class="center-image-container">
-        <img src="https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-negro-svg-2022.svg" alt="Logo SENA" class="center-image">
+        <img src="https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-verde-complementario-svg-2022.svg" alt="Logo SENA" class="center-image">
     </div>
 
     <h3 class="text-center">

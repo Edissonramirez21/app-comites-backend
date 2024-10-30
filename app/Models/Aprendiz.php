@@ -19,16 +19,16 @@ class Aprendiz extends Model
 
     
     protected $fillable = [
-        'Nombre',
-        'Tipo_Documento',
-        'Numero_Documento',
-        'Telefono',
-        'Correo',
-        'Ficha',
-        'Programa',
-        'Etapa_Formacion',
-        'Nivel',
-        'Jornada'
+        'name',
+        'tipo_documento',
+        'identificacion',
+        'telefono',
+        'email',
+        'ficha',
+        'programa',
+        'etapa_formacion',
+        'nivel',
+        'jornada',
     ];
 
     

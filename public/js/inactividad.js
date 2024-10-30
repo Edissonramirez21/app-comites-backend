@@ -1,14 +1,29 @@
 (function() {
-    var maxInactividad = 1740; // 29 minutos en segundos
-    var tiempoAdvertencia = 60; // 60 segundos para la advertencia
-    var tiempoInactivo = 0;
-    var intervaloInactividad;
-    var intervaloAdvertencia;
+    console.log('inactividad.js cargado');
+    console.log('maxInactividad:', window.maxInactividad);
+    console.log('tiempoAdvertencia:', window.tiempoAdvertencia);
 
-    // Iniciar el temporizador de inactividad
+    if (typeof window.maxInactividad === 'undefined' || typeof window.tiempoAdvertencia === 'undefined') {
+        console.error('Las variables maxInactividad o tiempoAdvertencia no están definidas.');
+        return;
+    }
+
+    const maxInactividad = window.maxInactividad;
+    const tiempoAdvertencia = window.tiempoAdvertencia;
+
+    let tiempoInactivo = 0;
+    let intervaloInactividad;
+    let intervaloAdvertencia;
+
+    const modalElement = document.getElementById('modal-expiracion');
+    const modal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
+
     function iniciarTemporizador() {
+        console.log('Iniciando temporizador de inactividad');
+        clearInterval(intervaloInactividad);
         intervaloInactividad = setInterval(function() {
             tiempoInactivo++;
+            console.log('Tiempo inactivo:', tiempoInactivo);
             if (tiempoInactivo >= maxInactividad) {
                 clearInterval(intervaloInactividad);
                 mostrarAdvertencia();
@@ -16,46 +31,53 @@
         }, 1000);
     }
 
-    // Resetear el temporizador de inactividad
     function resetearTiempo() {
         tiempoInactivo = 0;
     }
 
-    // Mostrar el modal de advertencia
     function mostrarAdvertencia() {
-        var tiempoRestante = tiempoAdvertencia;
-        $('#contador-expiracion').text(tiempoRestante);
-        $('#modal-expiracion').modal('show');
+        let tiempoRestante = tiempoAdvertencia;
+        document.getElementById('contador-expiracion').textContent = tiempoRestante;
+        modal.show();
 
         intervaloAdvertencia = setInterval(function() {
             tiempoRestante--;
-            $('#contador-expiracion').text(tiempoRestante);
-
+            document.getElementById('contador-expiracion').textContent = tiempoRestante;
             if (tiempoRestante <= 0) {
                 clearInterval(intervaloAdvertencia);
-                window.location.href = "{{ route('logout') }}";
+                document.getElementById('logout-expired').value = 'true';
+                document.getElementById('logout-form').submit();
             }
         }, 1000);
     }
 
-    // Eventos para detectar actividad del usuario
     function eventosActividad() {
-        ['load', 'mousemove', 'mousedown', 'click', 'scroll', 'keypress'].forEach(function(event) {
-            window.addEventListener(event, function() {
-                resetearTiempo();
-            });
+        const eventos = ['load', 'mousemove', 'mousedown', 'click', 'scroll', 'keypress'];
+        eventos.forEach(function(evento) {
+            window.addEventListener(evento, resetearTiempo);
         });
     }
 
-    // Evento para continuar la sesión
-    $('#continuar-sesion').click(function() {
-        $('#modal-expiracion').modal('hide');
-        clearInterval(intervaloAdvertencia);
-        tiempoInactivo = 0;
-        iniciarTemporizador();
+    document.addEventListener('DOMContentLoaded', function() {
+        const botonContinuar = document.getElementById('continuar-sesion');
+        if (botonContinuar) {
+            botonContinuar.addEventListener('click', function() {
+                modal.hide();
+                clearInterval(intervaloAdvertencia);
+                tiempoInactivo = 0;
+                iniciarTemporizador();
+            });
+        }
+
+        const botonCerrar = document.getElementById('cerrar-sesion-modal');
+        if (botonCerrar) {
+            botonCerrar.addEventListener('click', function() {
+                document.getElementById('logout-expired').value = 'false';
+                document.getElementById('logout-form').submit();
+            });
+        }
     });
 
-    // Inicializar
     iniciarTemporizador();
     eventosActividad();
 })();

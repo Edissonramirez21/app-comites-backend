@@ -110,37 +110,60 @@
     </div>
 </div>
 
-<footer>
-    Sistema Interactivo para el Monitoreo y Evaluación de Comités &copy; SENA 2024 Todos los derechos reservados 
-</footer>
-<br>
-
-<!-- JavaScript de Bootstrap y dependencias -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/popper.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/cargando.js') }}"></script>
-</body>
+<!-- Formulario Oculto para Logout -->
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+        <input type="hidden" name="expired" id="logout-expired" value="false">
+</form>
 
 
 <!-- Modal de Advertencia de Expiración de Sesión -->
 <div class="modal fade" id="modal-expiracion" tabindex="-1" aria-labelledby="modalExpiracionLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-warning" id="modalExpiracionLabel">Advertencia de Inactividad</h5>
+    <div class="modal-content" style="background-color: #f5f5f5; border: 1px solid #5eb319; border-radius: 8px;">
+      <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
+        <h3 class="modal-title" id="modalExpiracionLabel" style="color: #ff6619; text-shadow: 2px 2px 5px #aaaaaa;">
+          Advertencia de Inactividad
+        </h3>
       </div>
-      <div class="modal-body">
-        Tu sesión expirará en <span id="contador-expiracion">60</span> segundos por inactividad.
+      <div class="modal-body text-center" style="padding-top: 10px;">
+        <h5 style="color: #333; font-size: 18px; font-weight: 500; margin-bottom: 15px;">
+          Tu sesión expirará en 
+          <span id="contador-expiracion" style="padding: 5px 15px;  font-weight: 600; font-size: 20px; color: #28a745; background-color: #e0e0e0;">60</span> 
+          segundos debido a inactividad.
+        </h5>
+        <h5 style="color: #333; font-size: 18px; font-weight: 500;">
+          ¿Deseas continuar tu sesión?
+        </h5>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="continuar-sesion">Continuar Sesión</button>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button type="button" id="continuar-sesion" class="btn btn-success">Continuar Sesión</button>
+        <button type="button" id="cerrar-sesion-modal" class="btn btn-secondary" style="background-color: #d4d4d4; border: none;">Cerrar Sesión</button>
       </div>
     </div>
   </div>
 </div>
 
 
+
+
+<footer>
+    Sistema Interactivo para el Monitoreo y Evaluación de Comités &copy; SENA 2024 Todos los derechos reservados 
+</footer>
+<br>
+
+
+<!-- JavaScript de Bootstrap y dependencias -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ asset('js/cargando.js') }}"></script>
+<script>
+    window.logoutUrl = "{{ route('logout') }}";
+    window.maxInactividad = {{ config('app.inactivity_limit') }};
+    window.tiempoAdvertencia = {{ config('app.warning_time') }};
+</script>
+    <script src="{{ asset('js/inactividad.js') }}"></script>
+</body>
 </html>

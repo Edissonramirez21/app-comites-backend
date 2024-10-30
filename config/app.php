@@ -123,4 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'inactivity_limit' => env('INACTIVITY_LIMIT', 60),
+    'warning_time' => env('WARNING_TIME', 10),
+
+
 ];

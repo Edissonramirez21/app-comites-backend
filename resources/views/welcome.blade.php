@@ -46,6 +46,7 @@
         <div class="form-group text-center">
             <label for="email">Ingrese el correo electrónico previamente registrado:</label>
             <input type="email" name="email" id="email" class="form-control" required>
+            <a href="{{ route('inicial') }}" class="btn btn-success mt-3">Volver al Inicio</a>
             <button type="submit" class="btn btn-success mt-3">Enviar Código</button>
         </div>
     </form>

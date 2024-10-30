@@ -45,15 +45,19 @@ class LoginController extends Controller
                 }     
         }
 
-        public function logout(Request $request)
+                public function logout(Request $request)
         {
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-        
-             // Redirigir a la página de inicio o a otra vista
+
+            if ($request->input('expired') === 'true') {
+                return redirect()->route('sesion.expirada');
+            }
+
             return redirect('login')->with('success', 'Has cerrado sesión exitosamente.');
         }
+
     
     
 }

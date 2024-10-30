@@ -52,7 +52,7 @@
                 <label for="codigo_validacion">Código de verificación:</label>
                 <input type="text" name="codigo_validacion" id="codigo_validacion" class="form-control" maxlength="6" pattern="\d{6}" inputmode="numeric" required>
             </div>
-
+            <a href="{{ route('welcome') }}" class="btn btn-success mt-3">Generar Código</a>
             <button type="submit" class="btn btn-success mt-3">Acceder</button>
         </div>
     </form>

@@ -56,7 +56,10 @@ Route::view('/registro', 'register')->name('registro');
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // Renamed to 'login'
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+//Ruta de Logout Protegida por Autenticación
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Registration Routes
 Route::get('/register', [RegistroController::class, 'showForm'])->name('registro.form');
