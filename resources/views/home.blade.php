@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-naranja-png-2022.png" type="image/png"/>
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dxo3myijj/image/upload/v1732146347/SENA/logo-sena-naranja-svg-2022_veur23.svg" type="image/png"/>
     <title>App Comeva Home | SENA</title>
 
-    <!-- CSS de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -96,7 +95,7 @@
 
     <!-- Personalización del menú de inicio -->
     <div class="center-image-container">
-        <img src="https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-verde-svg-2022.svg" alt="Logo SENA" class="center-image">
+        <img src="https://res.cloudinary.com/dxo3myijj/image/upload/v1732146348/SENA/logo-sena-verde-svg-2022_m7sgit.svg" alt="Logo SENA" class="center-image">
     </div>
     <h3>
         Bienvenido, {{ Auth::user()->rol }}
@@ -156,7 +155,7 @@
 <!-- JavaScript de Bootstrap y dependencias -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="{{ asset('js/cargando.js') }}"></script>
 <script>
